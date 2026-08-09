@@ -1,1 +1,282 @@
-hello world
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kricod — open source organization</title>
+<meta name="description" content="kricod is a young open-source organization. Everything it builds is public from the first commit.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="kricod — open source organization">
+<meta property="og:description" content="kricod is a young open-source organization. Everything it builds is public from the first commit.">
+<meta property="og:url" content="https://kricod.github.io">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --bg:      #eef0f4;
+    --surface: #ffffff;
+    --ink:     #14182b;
+    --muted:   #525a75;
+    --line:    #d6dae5;
+    --accent:  #5b44f0;
+
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+            "DejaVu Sans Mono", monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+            Arial, sans-serif;
+
+    --gutter: clamp(1.25rem, 5vw, 2.5rem);
+    --measure: 62rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:      #0e1120;
+      --surface: #171b2e;
+      --ink:     #eef0f6;
+      --muted:   #99a0ba;
+      --line:    #2a3050;
+      --accent:  #8a7bff;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .shell {
+    max-width: var(--measure);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* ---- label: the one recurring utility voice ---- */
+  .label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* ---- top bar ---- */
+  .bar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.5rem;
+  }
+
+  .bar__mark {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+
+  .bar__link {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .bar__link:hover { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* ---- hero ---- */
+  .hero { padding-block: clamp(3.5rem, 12vw, 7rem) clamp(2.5rem, 7vw, 4.5rem); }
+
+  .hero__eyebrow { margin-bottom: clamp(1.5rem, 4vw, 2.25rem); }
+
+  .wordmark {
+    font-family: var(--mono);
+    font-size: clamp(3.25rem, 15vw, 8.5rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+    margin: 0;
+  }
+
+  .wordmark__caret {
+    display: inline-block;
+    width: 0.24em;
+    height: 0.72em;
+    margin-left: 0.16em;
+    vertical-align: -0.02em;
+    background: var(--accent);
+    animation: blink 1.15s steps(1, end) infinite;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .lede {
+    max-width: 34em;
+    margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
+    font-size: clamp(1.05rem, 1.1rem + 0.5vw, 1.3rem);
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  /* ---- projects ---- */
+  .projects {
+    padding-block: clamp(2.5rem, 7vw, 4rem) clamp(3.5rem, 10vw, 6rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .projects__label { margin-bottom: 1.75rem; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.6rem 1.5rem;
+    border-radius: 10px;
+    min-height: 10.5rem;
+  }
+
+  /* published project */
+  .card--live {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+  }
+
+  .card--live:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+
+  .card__name {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .card__desc {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+
+  .card__go {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+
+  /* the reserved slot */
+  .card--open {
+    border: 1px dashed var(--line);
+    background: transparent;
+  }
+
+  .card--open .card__name { color: var(--muted); font-weight: 500; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ---- footer ---- */
+  .foot {
+    border-top: 1px solid var(--line);
+    padding-block: 1.75rem 2.5rem;
+  }
+
+  .foot a {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .foot a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="bar shell">
+  <a class="bar__mark" href="/">kricod</a>
+  <a class="bar__link" href="https://github.com/kricod">github.com/kricod&nbsp;↗</a>
+</header>
+
+<main>
+  <section class="hero shell">
+    <p class="label hero__eyebrow">Open source organization</p>
+    <h1 class="wordmark">kricod<span class="wordmark__caret" aria-hidden="true"></span></h1>
+    <p class="lede">
+      A young organization building in the open. Every project is
+      <strong>public from the first commit</strong> — work in progress
+      included.
+    </p>
+  </section>
+
+  <section class="projects shell">
+    <h2 class="label projects__label">Projects</h2>
+
+    <div class="grid">
+      <a class="card card--live" href="https://github.com/kricod/practice-exams">
+        <h3 class="card__name">practice-exams</h3>
+        <p class="card__desc">
+          Practice questions and mock exams for IT certifications.
+        </p>
+        <span class="card__go">View on GitHub&nbsp;→</span>
+      </a>
+
+      <div class="card card--open">
+        <h3 class="card__name">Reserved</h3>
+        <p class="card__desc">
+          This space is held for the next project. New repositories appear here
+          as they are published.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot shell">
+  <a href="https://github.com/kricod">github.com/kricod</a>
+</footer>
+
+</body>
+</html>
