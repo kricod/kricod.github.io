@@ -1,0 +1,1 @@
+# kricod.github.io
