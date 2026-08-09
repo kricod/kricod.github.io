@@ -43,7 +43,11 @@ A card grid. One card per published repo.
 
 | Project | Description | Link |
 |---|---|---|
-| practice-exams | Practice questions and mock exams for IT certifications | https://github.com/kricod/practice-exams |
+| practice-exams | Practice questions and mock exams for IT certifications | https://kricod.github.io/practice-exams/ |
+
+Cards link to a project's live site where it has one, falling back to its
+GitHub repo otherwise — a visitor clicking a project wants to use it, not read
+its source.
 
 Below the grid, a quiet line noting more projects are on the way.
 
@@ -52,7 +56,11 @@ element — no other change required.
 
 ### Footer
 
-The GitHub org link only (`https://github.com/kricod`).
+A copyright line (`© 2026 kricod. All rights reserved.`) on the left and the
+GitHub org link on the right. Wraps to two stacked lines on narrow viewports.
+
+The copyright covers this site's content. It says nothing about how kricod's
+projects are licensed — each repo carries its own license file.
 
 Explicitly out of scope: a "how to contribute" section and a contact block.
 Not requested, and the org has nothing to point contributors at yet.
